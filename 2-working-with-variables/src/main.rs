@@ -1,3 +1,5 @@
+use std::io;
+
 fn main() {
     // PART 1
     // Mutable vs Immutable
@@ -25,4 +27,38 @@ fn main() {
     let spaces = "    ";
     let spaces = spaces.len();
     println!("There is {} spaces in that string", spaces);
+
+    // Part 3
+    // I skiped the types that makes sense if you had any
+    // programming background. let's jump into `Tuple`
+
+    // Tuple
+    let tup: (i32, f64, u8) = (500, 6.4, 1); // it can detect types too...
+    let (x, y, z) = tup;
+    println!("Wow the values are: {}, {}, {}", x, y, z);
+
+    let second_tuple_value = tup.1; // access tuple values with '.'
+    print!("this is the second value of tuple: {}", second_tuple_value);
+
+    // Array
+    // All array elements must be the same type!
+    let numbers_list: [i32;5] = [1, 2, 3, 4, 5]; // This is an array with i32 type and 5 elements.
+    println!("Number array is: {:?}", numbers_list);
+
+    let second_number_of_array = numbers_list[1];
+    println!("Second number of array is: {}", second_number_of_array);
+
+    // Invalid Array Element Access
+    println!("Please enter an array index.");
+    let mut index = String::new();
+    io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line.");
+    let index: usize = index // convert type of index that user typed
+        .trim()
+        .parse()
+        .expect("index that you enterd was not a number.");
+    let element = numbers_list[index];
+    println!("the value of the element at index {} is: {}", index, element);
+
 }
